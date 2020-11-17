@@ -1,0 +1,3 @@
+[deps]
+DUtils = "76b634e0-923b-4e58-9899-68d51535f6af"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
