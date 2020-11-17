@@ -18,8 +18,7 @@ function showdist(a::DArray)
     end
 end
 
-function showfield(c::AbstractArray, str::String, inds::UnitRange{Int64}...; axis::Int = 0)
-    s = Symbol(str)
+function showfield(c::AbstractArray, field::Symbol, inds::UnitRange{Int64}...; axis::Int = 0)
     if length(inds) == 0
         inds = Tuple([1:size(c,i) for i = 1:length(size(c))])
     end
@@ -27,11 +26,11 @@ function showfield(c::AbstractArray, str::String, inds::UnitRange{Int64}...; axi
     firstinds = CartesianIndex(Tuple([inds[i][1] - 1 for i = 1:length(inds)]))
     if axis == 0
         for k in CartesianIndices(a)
-            a[k] = getfield(c[k + firstinds], s)
+            a[k] = getfield(c[k + firstinds], field)
         end
     else
         for k in CartesianIndices(a)
-            ak = getfield(c[k + firstinds], s)
+            ak = getfield(c[k + firstinds], field)
             a[k] = ak[axis]
         end
     end
