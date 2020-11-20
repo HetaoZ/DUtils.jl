@@ -6,11 +6,11 @@ export showdist, showfield
 
 function showdist(a::DArray)
     println("PID   |  localindices")
-    for pid in workers()
+    for pid in procs(a)
         ind = @fetchfrom pid localindices(a)
         for i in ind
             if length(i) == 0
-                ind = "-"
+                ind = "N/A"
                 break
             end
         end
